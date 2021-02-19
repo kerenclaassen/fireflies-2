@@ -5,6 +5,7 @@ radio.set_group(1)
 
 def on_forever():
     global clock
+    global noon
     # if clock hits noon, flash the screen
     if clock >= noon:
         # notify neighbors
@@ -21,3 +22,11 @@ def on_forever():
         # increment the clock
         clock += 1
 basic.forever(on_forever)
+
+#when you receive a message from a neighbour
+def on_received_number(receivedNumber):
+    global clock
+    global noon
+    if clock < noon:
+        clock += 1
+radio.on_received_number(on_received_number)
